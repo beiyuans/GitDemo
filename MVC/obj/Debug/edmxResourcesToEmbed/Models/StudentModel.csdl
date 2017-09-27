@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="StudentTestModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Course">
+    <Key>
+      <PropertyRef Name="cid" />
+    </Key>
+    <Property Name="cid" Type="Int32" Nullable="false" />
+    <Property Name="cname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Score" Relationship="Self.FK_Score_Course" FromRole="Course" ToRole="Score" />
+  </EntityType>
+  <EntityType Name="Score">
+    <Key>
+      <PropertyRef Name="sid" />
+      <PropertyRef Name="cid" />
+    </Key>
+    <Property Name="sid" Type="Int32" Nullable="false" />
+    <Property Name="cid" Type="Int32" Nullable="false" />
+    <Property Name="course" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Course1" Relationship="Self.FK_Score_Course" FromRole="Score" ToRole="Course" />
+    <NavigationProperty Name="StudentInfo" Relationship="Self.FK_Score_StudentInfo" FromRole="Score" ToRole="StudentInfo" />
+  </EntityType>
+  <EntityType Name="StudentInfo">
+    <Key>
+      <PropertyRef Name="sid" />
+    </Key>
+    <Property Name="sid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Score" Relationship="Self.FK_Score_StudentInfo" FromRole="StudentInfo" ToRole="Score" />
+  </EntityType>
+  <Association Name="FK_Score_Course">
+    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="Score" Type="Self.Score" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="cid" />
+      </Principal>
+      <Dependent Role="Score">
+        <PropertyRef Name="cid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Score_StudentInfo">
+    <End Role="StudentInfo" Type="Self.StudentInfo" Multiplicity="1" />
+    <End Role="Score" Type="Self.Score" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StudentInfo">
+        <PropertyRef Name="sid" />
+      </Principal>
+      <Dependent Role="Score">
+        <PropertyRef Name="sid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="StudentTestEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Course" EntityType="Self.Course" />
+    <EntitySet Name="Score" EntityType="Self.Score" />
+    <EntitySet Name="StudentInfo" EntityType="Self.StudentInfo" />
+    <AssociationSet Name="FK_Score_Course" Association="Self.FK_Score_Course">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="Score" EntitySet="Score" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Score_StudentInfo" Association="Self.FK_Score_StudentInfo">
+      <End Role="StudentInfo" EntitySet="StudentInfo" />
+      <End Role="Score" EntitySet="Score" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

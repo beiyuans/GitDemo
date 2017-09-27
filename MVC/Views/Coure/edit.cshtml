@@ -1,0 +1,22 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>edit</title>
+</head>
+<body>
+    <div> 
+        <form method="post" action="@Url.Action("editdata","Coure")">
+            编号：<input type="text" name="cid" value="@Model.cid" ]" disabled="disabled" />
+            课程名称：<input type="text" name="cname" value="@Model.cname" ]" />
+            <input type="submit" value="确定" />
+        </form> 
+    </div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+﻿
+@{
+    Layout = null;
+}
+@using MVC.Controllers
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>h</title>
+</head>
+<body>
+    <div> 
+        @foreach (var item in Model)
+        {
+            <span>编号：</span>@item.id
+            <span>名称:</span>@item.name
+            <span>所属地区：</span>@item.address
+        }
+    </div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Title</title>
+</head>
+<body>
+    <div style="width:100%;background:aqua;height:200px">
+        @RenderSection("header")
+    </div>
+    <div>
+        <div style="width:20%;float:left;background:red;">
+            @RenderSection("left")
+        </div>
+        @RenderBody()
+    </div>
+    <div style="width:100%;background:aqua;height:200px">
+        @RenderSection("footer")
+    </div>
+</body>
+</html>

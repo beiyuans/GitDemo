@@ -1,0 +1,27 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div> 
+        <form>
+            <table>
+                <tr><td>编号</td><td>课程名称</td><td>编辑</td><td>删除</td></tr>
+                @foreach (var item in Model)
+                {
+                    <tr><td>@item.cid</td><td>@item.cname</td><td>@Html.ActionLink("编辑", "edit", new { id = item.cid })</td>@*<td><a href="/Student/delete/@item.sid">删除</a></td>*@<td>@Html.ActionLink("删除", "delete", new { id = item.cid })</td></tr>
+                }
+            </table>
+            @Html.ActionLink("添加", "add")
+        </form> 
+    </div>
+</body>
+</html>

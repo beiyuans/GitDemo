@@ -1,0 +1,23 @@
+﻿
+@{
+    Layout = null;
+}
+@using MVC.Controllers
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>edit</title>
+</head>
+<body>
+    <div> 
+        <form method="post" action="@Url.Action("editdata","List")">
+            编号：<input type="text" name="uid"  value="@Model.id"/>
+            名称：<input type="text" name="uanme"  value="@Model.name"/>
+            地址：<input type="text" name="uaddress" value="@Model.address" />
+            <input type="submit" value="修改" />
+        </form>
+    </div>
+</body>
+</html>
